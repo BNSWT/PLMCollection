@@ -23,7 +23,7 @@ pip install git+https://github.com/HazyResearch/flash-attention.git@5b838a8bef78
 # Install DeepMind's OpenMM patch
 OPENFOLD_DIR=$PWD
 pushd lib/conda/envs/$ENV_NAME/lib/python3.7/site-packages/ \
-    && patch -p0 < $OPENFOLD_DIR/lib/openmm.patch \
+    && patch -p0 < $OPENFOLD_DIR/tools/openmm.patch \
     && popd
 
 # Download folding resources
