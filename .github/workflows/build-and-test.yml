@@ -37,9 +37,4 @@ jobs:
     - name: Activate virtual environment
       run: |
         source scripts/activate_conda_env.sh
-    - name: Compile OpenFold's CUDA kernel
-      run: |
         python3 setup.py install
-    - name: Deactivate virtual environment
-      run: |
-        source scripts/deactivate_conda_env.sh
