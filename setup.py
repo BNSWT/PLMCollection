@@ -18,7 +18,7 @@ import subprocess
 
 from torch.utils.cpp_extension import BuildExtension, CUDAExtension, CUDA_HOME
 
-from scripts.utils import get_nvidia_cc
+from tools.utils import get_nvidia_cc
 
 
 version_dependent_macros = [
