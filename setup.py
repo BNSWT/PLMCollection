@@ -88,13 +88,13 @@ setup(
     ext_modules=[CUDAExtension(
         name="attn_core_inplace_cuda",
         sources=[
-            "openfold/utils/kernel/csrc/softmax_cuda.cpp",
-            "openfold/utils/kernel/csrc/softmax_cuda_kernel.cu",
+            "Evoformer/openfold/utils/kernel/csrc/softmax_cuda.cpp",
+            "Evoformer/openfold/utils/kernel/csrc/softmax_cuda_kernel.cu",
         ],
         include_dirs=[
             os.path.join(
                 os.path.dirname(os.path.abspath(__file__)),
-                'openfold/utils/kernel/csrc/'
+                'Evoformer/openfold/utils/kernel/csrc/'
             )
         ],
         extra_compile_args={
