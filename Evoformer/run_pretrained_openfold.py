@@ -183,8 +183,9 @@ def main(args):
         # Gather input sequences
         with open(os.path.join(args.fasta_dir, fasta_file), "r") as fp:
             data = fp.read()
-    
-        tags, seqs = parse_fasta(data)
+        
+        name = fasta_file
+        tags, seqs = parse_fasta(data, name)
         # assert len(tags) == len(set(tags)), "All FASTA tags must be unique"
         tag = '-'.join(tags)
 
@@ -259,6 +260,8 @@ def main(args):
                 processed_feature_dict
             )
             out = tensor_tree_map(lambda x: np.array(x.cpu()), out)
+
+            np.save(f"data/Metal Ion Binding/repr/>{tag}_msa_repr.npz", out["msa"])
 
             unrelaxed_protein = prep_output(
                 out, 
