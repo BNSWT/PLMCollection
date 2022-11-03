@@ -130,3 +130,8 @@ dmypy.json
 
 # Downloaded resources
 Evoformer/openfold/resources
+
+# Generated data
+output/
+data/Metal Ion Binding/fasta
+data/Metal Ion Binding/repr
