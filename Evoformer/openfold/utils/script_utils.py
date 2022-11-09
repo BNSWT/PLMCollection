@@ -129,6 +129,23 @@ def parse_fasta(data, name):
 
     return tags, seqs
 
+def parse_fasta_1seq(data, name):
+    data = re.sub('>$', '', data, flags=re.M)
+    if '>' in data:
+        lines = [
+            l.replace('\n', '')
+            for prot in data.split('>') for l in prot.strip().split('\n', 1)
+        ][1:]
+        tags, seqs = lines[::2], lines[1::2]
+        tags = [t.split()[0] for t in tags]
+        tags = [tags[0]]
+        seqs = [seqs[0]]
+    else:
+        seqs = [data.replace('\n', '')]
+        tags = [name.split('.')[0]]
+
+    return tags, seqs
+
 
 def update_timings(timing_dict, output_file=os.path.join(os.getcwd(), "timings.json")):
     """

@@ -371,10 +371,10 @@ class AlignmentRunner:
 
         for name, dic in db_map.items():
             binary, dbs = dic["binary"], dic["dbs"]
-            if(binary is None and not all([x is None for x in dbs])):
-                raise ValueError(
-                    f"{name} DBs provided but {name} binary is None"
-                )
+            # if(binary is None and not all([x is None for x in dbs])):
+            #     raise ValueError(
+            #         f"{name} DBs provided but {name} binary is None"
+            #     )
 
         if(not all([x is None for x in db_map["hhsearch"]["dbs"]])
             and uniref90_database_path is None):

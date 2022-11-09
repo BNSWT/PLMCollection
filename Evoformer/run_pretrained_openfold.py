@@ -18,7 +18,7 @@ import math
 import numpy as np
 import os
 
-from openfold.utils.script_utils import load_models_from_command_line, parse_fasta, run_model, prep_output, \
+from openfold.utils.script_utils import load_models_from_command_line, parse_fasta, parse_fasta_1seq, run_model, prep_output, \
     update_timings, relax_protein
 
 logging.basicConfig()
@@ -68,7 +68,7 @@ def precompute_alignments(tags, seqs, alignment_dir, args):
             fp.write(f">{tag}\n{seq}")
 
         local_alignment_dir = os.path.join(alignment_dir, tag)
-        if(args.use_precomputed_alignments is None and not os.path.isdir(local_alignment_dir)):
+        if(args.use_precomputed_alignments is None or not os.path.isdir(local_alignment_dir)):
             logger.info(f"Generating alignments for {tag}...")
                 
             os.makedirs(local_alignment_dir)
@@ -179,13 +179,13 @@ def main(args):
 
     tag_list = []
     seq_list = []
-    for fasta_file in list_files_with_extensions(args.fasta_dir, (".fasta", ".fa")):
+    for fasta_file in list_files_with_extensions(args.fasta_dir, (".fasta", ".fa", ".a3m")):
         # Gather input sequences
         with open(os.path.join(args.fasta_dir, fasta_file), "r") as fp:
             data = fp.read()
         
         name = fasta_file
-        tags, seqs = parse_fasta(data, name)
+        tags, seqs = parse_fasta_1seq(data, name)
         # assert len(tags) == len(set(tags)), "All FASTA tags must be unique"
         tag = '-'.join(tags)
 

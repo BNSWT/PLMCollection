@@ -473,7 +473,8 @@ def _run_one_iteration(
             print(e)
             logging.info(e)
     if not minimized:
-        raise ValueError(f"Minimization failed after {max_attempts} attempts.")
+        # raise ValueError(f"Minimization failed after {max_attempts} attempts.")
+        print(f"Minimization failed after {max_attempts} attempts.")
     ret["opt_time"] = time.perf_counter() - start
     ret["min_attempts"] = attempts
     return ret

@@ -1,6 +1,7 @@
 import os
 import numpy as np
 from datetime import datetime
+import re
 
 filepath = "data/Metal Ion Binding/train.txt"
 
@@ -31,3 +32,29 @@ def make_x(path):
             
 def make_y(labels):
     return np.array(labels)
+
+def parse_fasta(data, name):
+    data = re.sub('>$', '', data, flags=re.M)
+    if '>' in data:
+        lines = [
+            l.replace('\n', '')
+            for prot in data.split('>') for l in prot.strip().split('\n', 1)
+        ][1:]
+        tags, seqs = lines[::2], lines[1::2]
+        tags = [t.split()[0] for t in tags]
+        tags = tags[0]
+        seqs = seqs[0]
+    else:
+        seqs = [data.replace('\n', '')]
+        tags = [name.split('.')[0]]
+
+    return tags, seqs
+
+def make_fasta_from_a3m(a3m_dir):
+    g = os.walk(a3m_dir)
+    for path, dir_list, file_list in g:
+        for file_name in file_list:
+            file = open(os.path.join(a3m_dir, file_name))
+            tags, seqs = parse_fasta(file.read(), 'temp')
+
+make_fasta_from_a3m("output/alignments")          

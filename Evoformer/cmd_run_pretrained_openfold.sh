@@ -1,6 +1,7 @@
 CUDA_VISIBLE_DEVICES=1 python3 Evoformer/run_pretrained_openfold.py \
         data/'Metal Ion Binding'/fasta \
         /home/public/OpenFold/dataset/pdb_mmcif/mmcif_files/ \
+        --use_precomputed_alignments output/alignments\
         --uniref90_database_path  /home/public/OpenFold/dataset/uniref90/uniref90.fasta \
         --mgnify_database_path  /home/public/OpenFold/dataset/mgnify/mgy_clusters.fa \
         --pdb70_database_path  /home/public/OpenFold/dataset/pdb70/pdb70 \
