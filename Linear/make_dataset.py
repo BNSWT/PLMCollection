@@ -46,8 +46,11 @@ class FunctionSet(Dataset):
                 tags, seqs = self.parse_first_fasta(file.read())
                 if seqs in sequence or sequence in seqs:
                     name = tags
-                    path = "data/Metal Ion Binding/repr/>" + name + "_msa_repr.npz.npy"
-                    return np.load(path)
+                    repr_path = "data/Metal Ion Binding/repr/>" + name + "_msa_repr.npz.npy"
+                    if os.path.exists(repr_path):
+                        return np.load(repr_path)
+                    else:
+                        print(f"repr not found. tag:{tags}, sequence:{seqs}")
         print("Not found")
         return None
     
