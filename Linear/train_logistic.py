@@ -30,6 +30,9 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
         
-        if (i+1) % 100 == 0:
-            print ('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}' 
-                   .format(epoch+1, num_epochs, i+1, total_step, loss.item()))    
+        _, predicted = torch.max(outputs.data, 1)
+        total = labels.size(0)
+        correct = (predicted == labels).sum()
+        
+        print ('Epoch [{}/{}], Step [{}/{}], Accuracy: {:.4f},  Loss: {:.4f}' 
+                .format(epoch+1, num_epochs, i+1, total_step, correct/total, loss.item()))    
