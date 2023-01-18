@@ -261,7 +261,7 @@ def main(args):
             )
             out = tensor_tree_map(lambda x: np.array(x.cpu()), out)
 
-            np.save(f"data/Metal Ion Binding/repr/>{tag}_msa_repr.npz", out["msa"])
+            np.save(f"data/Metal Ion Binding/test-repr/>{tag}_msa_repr.npz", out["msa"])
 
             unrelaxed_protein = prep_output(
                 out, 

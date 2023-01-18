@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "Python: Train EvoClassifier",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/Evoformer/run_pretrained_openfold.py",
@@ -28,7 +28,36 @@
                 "--hhsearch_binary_path",  "/root/PLMCollection/lib/conda/envs/plms/bin/hhsearch",
                 "--kalign_binary_path",  "/root/PLMCollection/lib/conda/envs/plms/bin/kalign",
                 "--config_preset",  "model_1_ptm",
-                "--openfold_checkpoint_path",  "/home/public/OpenFold/resources/openfold_params/finetuning_ptm_2.pt",
+                "--openfold_checkpoint_path",  "Evoformer/openfold/resources/openfold_params/finetuning_ptm_2.pt",
+                "--skip_relaxation", 
+            ]
+        },
+
+        {
+            "name": "Python: Inference",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/Evoformer/run_pretrained_openfold.py",
+            "python": "/root/anaconda3/envs/openfold_env/bin/python",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "output/alignments",
+                "/home/public/OpenFold/dataset/pdb_mmcif/mmcif_files/",
+                "--uniref90_database_path",  "/home/public/OpenFold/dataset/uniref90/uniref90.fasta",
+                // "--mgnify_database_path",  "/home/public/OpenFold/dataset/mgnify/mgy_clusters.fa",
+                "--pdb70_database_path",  "/home/public/OpenFold/dataset/pdb70/pdb70",
+                "--uniclust30_database_path",  "/home/public/OpenFold/dataset/uniclust30/uniclust30_2018_08/uniclust30_2018_08",
+                "--output_dir",  "/root/PLMCollection/output",
+                "--use_precomputed_alignments", "output/alignments",
+                // "--bfd_database_path",  "/home/public/OpenFold/dataset/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt",
+                "--model_device",  "cuda:0",
+                // "--jackhmmer_binary_path",  "/root/PLMCollection/lib/conda/envs/plms/bin/jackhmmer",
+                // "--hhblits_binary_path",  "/root/PLMCollection/lib/conda/envs/plms/bin/hhblits",
+                "--hhsearch_binary_path",  "/root/PLMCollection/lib/conda/envs/plms/bin/hhsearch",
+                "--kalign_binary_path",  "/root/PLMCollection/lib/conda/envs/plms/bin/kalign",
+                "--config_preset",  "model_1_ptm",
+                "--openfold_checkpoint_path",  "Evoformer/openfold/resources/openfold_params/finetuning_ptm_2.pt",
                 "--skip_relaxation", 
             ]
         }

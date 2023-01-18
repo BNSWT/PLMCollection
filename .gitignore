@@ -135,3 +135,5 @@ Evoformer/openfold/resources
 output/
 data/Metal Ion Binding/fasta
 data/Metal Ion Binding/repr
+data/Metal Ion Binding/test-repr
+data/Metal Ion Binding/*.npy
